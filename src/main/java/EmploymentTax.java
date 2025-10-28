@@ -2,6 +2,7 @@ public class EmploymentTax extends TaxCalculation {
 
     private double socialSecurityTax;
     private double socialSecurityHealthTax;
+    private double sickSecurityTax;
     private double primaryHealthTax;
     private double secondaryHealthTax;
     private double deductibleExpensesTax;
@@ -20,7 +21,7 @@ public class EmploymentTax extends TaxCalculation {
 
         socialSecurityTax = (income * 9.76) / 100;
         socialSecurityHealthTax = (income * 1.5) / 100;
-        double sickSecurityTax = (income * 2.45) / 100;
+         sickSecurityTax = (income * 2.45) / 100;
         income = (income - socialSecurityTax - socialSecurityHealthTax - sickSecurityTax);
     }
 
@@ -49,7 +50,21 @@ public class EmploymentTax extends TaxCalculation {
 
     @Override
     public void calculateNetIncome() {
-        netIncome = income - primaryHealthTax - advanceTaxPaid;
+        netIncome = income - ((socialSecurityTax + socialSecurityHealthTax + sickSecurityTax) + primaryHealthTax + advanceTaxPaid);
     }
 
+
+    public void prepareTaxData() {
+        taxData.put("Social Security Tax", socialSecurityTax);
+        taxData.put("Social Security Health Tax", socialSecurityHealthTax);
+        taxData.put("Sickness Security Tax", sickSecurityTax);
+        taxData.put("Primary Health Tax", primaryHealthTax);
+        taxData.put("Secondary Health Tax", secondaryHealthTax);
+        taxData.put("Deductible Expenses Tax", deductibleExpensesTax);
+        taxData.put("Advance Tax", advanceTax);
+        taxData.put("Tax Free Income", taxFreeIncome);
+        taxData.put("Tax Paid", taxPaid);
+        taxData.put("Advance Tax Paid", advanceTaxPaid);
+        taxData.put("Net Income", netIncome);
+    }
 }

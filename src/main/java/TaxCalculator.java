@@ -134,8 +134,14 @@ public class TaxCalculator {
         printDeductibleExpensesTaxes();
 
         double taxedIncome = income - deductibleExpensesTax;
+
+
         double taxedIncome0 = Double.parseDouble(df.format(taxedIncome));
+
+
         System.out.println("income to be taxed = " + taxedIncome + " rounded = " + df.format(taxedIncome0));
+
+
         calculateTax(taxedIncome0);
         System.out.println("Advance tax 18 % = " + advanceTax);
         System.out.println("Already paid tax = " + df00.format(taxPaid));
