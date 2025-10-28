@@ -23,8 +23,8 @@ public class TaxCalculatorTest {
     }
 
     @Test
-    void testCalculateIncome() {
-        double result = TaxCalculator.calculateIncome(10000);
+    void testCalculateSocialSecurity() {
+        double result = TaxCalculator.calculateSocialSecurity(10000);
         assertEquals(8629.0, result );
         assertEquals(976.0, TaxCalculator.socialSecurityTax);
         assertEquals(150.0, TaxCalculator.socialSecurityHealthTax);
@@ -109,8 +109,8 @@ public class TaxCalculatorTest {
     }
 
     @Test
-    void testCalculateIncomeWithNegativeIncome() {
-        double result = TaxCalculator.calculateIncome(-5000);
+    void testCalculateIncomeWithNegativeSocialSecurity() {
+        double result = TaxCalculator.calculateSocialSecurity(-5000);
         assertEquals(-4314.5, result, "Income calculation with negative income failed");
         assertEquals(-488.0, TaxCalculator.socialSecurityTax, "Social security tax calculation with negative income failed");
         assertEquals(-75.0, TaxCalculator.socialSecurityHealthTax, "Health social security tax calculation with negative income failed");
@@ -124,7 +124,7 @@ public class TaxCalculatorTest {
     }
     @Test
     void testCalculateNetIncome() {
-        double netIncome = TaxCalculator.calculateIncome(12000);
+        double netIncome = TaxCalculator.calculateSocialSecurity(12000);
         assertEquals(10354.8, netIncome, "Net income calculation failed");
     }
 

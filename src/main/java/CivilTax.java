@@ -7,28 +7,29 @@ public class CivilTax extends  TaxCalculation {
     }
 
     @Override
-    public void calculateSocialSecurityTaxes(double income) {
-        // Implementation for civil tax social security calculations
+    public void calculateSocialSecurityTaxes() {
+
     }
 
     @Override
-    public void calculateHealthTaxes(double income) {
-        // Implementation for civil tax health tax calculations
+    public void calculateHealthTaxes() {
+
     }
 
     @Override
-    public void calculateDeductibleExpensesTax(double income) {
-        // Implementation for civil tax deductible expenses calculations
+    public void calculateDeductibleExpensesTax() {
+
     }
 
     @Override
-    public void calculateAdvanceTax(double income) {
-        // Implementation for civil tax advance tax calculations
+    public void calculateAdvanceTax() {
+
     }
 
     @Override
-    public void calculateNetIncome(double income) {
-        // Implementation for civil tax net income calculations
+    public void calculateNetIncome() {
+
     }
+
 
 }

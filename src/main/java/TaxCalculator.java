@@ -49,7 +49,7 @@ public class TaxCalculator {
         advanceTax = (income * 18) / 100;
     }
 
-    public static double calculateIncome(double income) {
+    public static double calculateSocialSecurity(double income) {
         socialSecurityTax = (income * 9.76) / 100;
         socialSecurityHealthTax = (income * 1.5) / 100;
         double soc_sick_secur = (income * 2.45) / 100;
@@ -91,13 +91,15 @@ public class TaxCalculator {
     public static void calculateEmploymentTax() {
         System.out.println("EMPLOYMENT");
         System.out.println("Income " + income);
-        income = calculateIncome(income);
-        printSocialSecurityTaxes();
+        income = calculateSocialSecurity(income);
+        printSocialSecurityTaxes();//done
 
-        calculateHealthTaxes(income);
+        calculateHealthTaxes(income);//done
         printHealthTaxes();
 
         double taxedIncome = income - deductibleExpensesTax;
+
+
         double taxedIncome0 = Double.parseDouble(df.format(taxedIncome));
         calculateTax(taxedIncome0);
         double taxPaid = advanceTax - taxFreeIncome;
@@ -120,7 +122,7 @@ public class TaxCalculator {
     public static void calculateCivilTax() {
         System.out.println("income " + income);
 
-        income = calculateIncome(income);
+        income = calculateSocialSecurity(income);
         printSocialSecurityTaxes();
         calculateHealthTaxes(income);
         System.out.println("Health security tax: 9% = "
