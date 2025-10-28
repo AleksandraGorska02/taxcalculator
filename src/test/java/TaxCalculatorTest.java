@@ -31,8 +31,8 @@ public class TaxCalculatorTest {
     }
 
     @Test
-    void testCalculateOtherTaxes() {
-        TaxCalculator.calculateOtherTaxes(8000);
+    void testCalculateHealthTaxes() {
+        TaxCalculator.calculateHealthTaxes(8000);
         assertEquals(720.0, TaxCalculator.primaryHealthTax);
         assertEquals(620.0, TaxCalculator.secondaryHealthTax);
     }
@@ -116,8 +116,8 @@ public class TaxCalculatorTest {
         assertEquals(-75.0, TaxCalculator.socialSecurityHealthTax, "Health social security tax calculation with negative income failed");
     }
     @Test
-    void testCalculateOtherTaxesWithNegativeIncome() {
-        TaxCalculator.calculateOtherTaxes(-8000);
+    void testCalculateHealthTaxesWithNegativeIncome() {
+        TaxCalculator.calculateHealthTaxes(-8000);
         assertEquals(-720.0, TaxCalculator.primaryHealthTax, "Primary health tax calculation with negative income failed");
         assertEquals(-620.0, TaxCalculator.secondaryHealthTax, "Secondary health tax calculation with negative income failed");
 

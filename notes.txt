@@ -1,6 +1,6 @@
 Tax Calculator
 
-input - two param (income, contract type)
+input - two param (income, contract type)  - done
 
 calculate - no single class,  separate classes for employment and civil contract. template method pattern
 

@@ -1,7 +1,5 @@
 
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 
 public class TaxCalculator {
@@ -29,10 +27,8 @@ public class TaxCalculator {
 
     public static void main(String[] args) {
 
-         income = InputHandler.getIncome();
-         contractType = InputHandler.getContractType();
-
-
+        income = InputHandler.getIncome();
+        contractType = InputHandler.getContractType();
 
 
         if (contractType == 'E') {
@@ -60,7 +56,7 @@ public class TaxCalculator {
         return (income - socialSecurityTax - socialSecurityHealthTax - soc_sick_secur);
     }
 
-    public static void calculateOtherTaxes(double income) {
+    public static void calculateHealthTaxes(double income) {
         primaryHealthTax = (income * 9) / 100;
         secondaryHealthTax = (income * 7.75) / 100;
     }
@@ -95,10 +91,10 @@ public class TaxCalculator {
     public static void calculateEmploymentTax() {
         System.out.println("EMPLOYMENT");
         System.out.println("Income " + income);
-       income = calculateIncome(income);
+        income = calculateIncome(income);
         printSocialSecurityTaxes();
 
-        calculateOtherTaxes(income);
+        calculateHealthTaxes(income);
         printHealthTaxes();
 
         double taxedIncome = income - deductibleExpensesTax;
@@ -108,7 +104,7 @@ public class TaxCalculator {
 
         calculateAdvanceTax();
         advanceTaxPaid0 = Double.parseDouble(df.format(advanceTaxPaid));
-         netIncome = income - ((socialSecurityTax + socialSecurityHealthTax + socialSecuritySicknessTax) + primaryHealthTax + advanceTaxPaid0);
+        netIncome = income - ((socialSecurityTax + socialSecurityHealthTax + socialSecuritySicknessTax) + primaryHealthTax + advanceTaxPaid0);
 
         System.out.println("income " + taxedIncome + " rounded " + df.format(taxedIncome0));
         System.out.println("Advance tax 18 % = " + advanceTax);
@@ -124,9 +120,9 @@ public class TaxCalculator {
     public static void calculateCivilTax() {
         System.out.println("income " + income);
 
-        income= calculateIncome(income);
+        income = calculateIncome(income);
         printSocialSecurityTaxes();
-        calculateOtherTaxes(income);
+        calculateHealthTaxes(income);
         System.out.println("Health security tax: 9% = "
                 + df00.format(primaryHealthTax) + " 7,75% = " + df00.format(secondaryHealthTax));
 
@@ -137,16 +133,16 @@ public class TaxCalculator {
 
         double taxedIncome = income - deductibleExpensesTax;
         double taxedIncome0 = Double.parseDouble(df.format(taxedIncome));
-        System.out.println("income to be taxed = " + taxedIncome+ " rounded = " + df.format(taxedIncome0));
+        System.out.println("income to be taxed = " + taxedIncome + " rounded = " + df.format(taxedIncome0));
         calculateTax(taxedIncome0);
         System.out.println("Advance tax 18 % = " + advanceTax);
-        System.out.println("Already paid tax = "  + df00.format(taxPaid));
+        System.out.println("Already paid tax = " + df00.format(taxPaid));
         calculateAdvanceTax();
         advanceTaxPaid0 = Double.parseDouble(df.format(advanceTaxPaid));
         System.out.println("Advance tax  = "
                 + df00.format(advanceTaxPaid) + " rounded = "
                 + df.format(advanceTaxPaid0));
-         netIncome = income
+        netIncome = income
                 - ((socialSecurityTax + socialSecurityHealthTax + socialSecuritySicknessTax) + primaryHealthTax + advanceTaxPaid0);
         System.out.println();
         System.out
