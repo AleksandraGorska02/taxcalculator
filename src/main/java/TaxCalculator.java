@@ -22,6 +22,7 @@ public class TaxCalculator {
     public static double advanceTax = 0;
     public static double advanceTaxPaid = 0;
     public static double taxPaid = 0;
+    public static double netIncome = 0;
 
     public static DecimalFormat df00 = new DecimalFormat(".00");
     public static DecimalFormat df = new DecimalFormat("#");
@@ -116,7 +117,7 @@ public class TaxCalculator {
 
         calculateAdvanceTax();
         advanceTaxPaid0 = Double.parseDouble(df.format(advanceTaxPaid));
-        double netIncome = income - ((socialSecurityTax + socialSecurityHealthTax + socialSecuritySicknessTax) + primaryHealthTax + advanceTaxPaid0);
+         netIncome = income - ((socialSecurityTax + socialSecurityHealthTax + socialSecuritySicknessTax) + primaryHealthTax + advanceTaxPaid0);
 
         System.out.println("income " + taxedIncome + " rounded " + df.format(taxedIncome0));
         System.out.println("Advance tax 18 % = " + advanceTax);
@@ -154,7 +155,7 @@ public class TaxCalculator {
         System.out.println("Advance tax  = "
                 + df00.format(advanceTaxPaid) + " rounded = "
                 + df.format(advanceTaxPaid0));
-        double netIncome = income
+         netIncome = income
                 - ((socialSecurityTax + socialSecurityHealthTax + socialSecuritySicknessTax) + primaryHealthTax + advanceTaxPaid0);
         System.out.println();
         System.out
