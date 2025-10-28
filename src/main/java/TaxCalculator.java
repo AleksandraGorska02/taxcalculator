@@ -28,21 +28,12 @@ public class TaxCalculator {
     public static DecimalFormat df = new DecimalFormat("#");
 
     public static void main(String[] args) {
-        try {
-            InputStreamReader isr = new InputStreamReader(System.in);
-            BufferedReader br = new BufferedReader(isr);
 
-            System.out.print("Enter income: ");
-            income = Double.parseDouble(br.readLine());
+         income = InputHandler.getIncome();
+         contractType = InputHandler.getContractType();
 
-            System.out.print("Contract Type: (E)mployment, (C)ivil: ");
-            contractType = br.readLine().charAt(0);
 
-        } catch (Exception ex) {
-            System.out.println("Incorrect");
-            System.err.println(ex);
-            return;
-        }
+
 
         if (contractType == 'E') {
             calculateEmploymentTax();
