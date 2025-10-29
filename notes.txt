@@ -32,3 +32,48 @@ Social Security Health Tax 1.5
 Sick Security Tax 0.0
 Primary Health Tax 7.766099999999999
 Advance Tax Paid 0.0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter income: 100
+Contract Type: (E)mployment, (C)ivil: C
+income 100.0 ok
+Social security tax 9.76 ok
+Health social security tax    1.50 ok
+Sickness social security tax  .00 OK
+Income basis for health social security: 86.28999999999999 ok
+Health security tax: 9% = 7.77 7,75% = 6.69 ok
+Tax deductible expenses 17.257999999999996 ok
+income to be taxed = 69.032 rounded = 69 ok
+Advance tax 18 % = 12.42 ok
+Already paid tax = .00
+Advance tax  = 5.73 rounded = 6 ok
+
+Net income = 61.26
+
+
+===================== 86.28999999999999
+Income 86.28999999999999
+Social Security Tax 9.76
+Social Security Health Tax 1.5
+Sick Security Tax 0.0
+Primary Health Tax 7.766099999999999
+Advance Tax Paid 6.0
+===================== 86.28999999999999
+
+Net income = 61.26

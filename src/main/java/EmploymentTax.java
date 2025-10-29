@@ -71,9 +71,7 @@ public class EmploymentTax extends TaxCalculation {
     @Override
     public void calculateNetIncome() {
 
-        netIncome = income - ((socialSecurityTax + socialSecurityHealthTax) + primaryHealthTax);
-        //delete + advanceTaxPaid because it is not deducted from income in original calculation
-        //delete sickSecurityTax because it is not deducted from income in original calculation
+        netIncome = income - ((socialSecurityTax + socialSecurityHealthTax- sickSecurityTax) + primaryHealthTax + advanceTaxPaid);
         taxData.put("Net income", netIncome);
     }
 }

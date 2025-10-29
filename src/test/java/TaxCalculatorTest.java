@@ -51,7 +51,7 @@ public class TaxCalculatorTest {
 
         assertEquals(976.0, TaxCalculator.socialSecurityTax,"Social security tax mismatch");
         assertEquals(150.0, TaxCalculator.socialSecurityHealthTax, "Health social security tax mismatch");
-        assertEquals(0.0, TaxCalculator.socialSecuritySicknessTax,  "Sickness social security tax mismatch");
+        assertEquals(245.0, TaxCalculator.socialSecuritySicknessTax,  "Sickness social security tax mismatch");
         assertEquals(776.61, TaxCalculator.primaryHealthTax,  "Primary health tax mismatch");
         assertEquals(668.7475, TaxCalculator.secondaryHealthTax, "Secondary health tax mismatch");
         assertEquals(818.0, TaxCalculator.advanceTaxPaid0,  "Advance tax paid mismatch");
@@ -65,7 +65,7 @@ public class TaxCalculatorTest {
 
         assertEquals(976.0, TaxCalculator.socialSecurityTax,  "Social security tax mismatch");
         assertEquals(150.0, TaxCalculator.socialSecurityHealthTax, "Health social security tax mismatch");
-        assertEquals(0.0, TaxCalculator.socialSecuritySicknessTax,  "Sickness social security tax mismatch");
+        assertEquals(245.0, TaxCalculator.socialSecuritySicknessTax,  "Sickness social security tax mismatch");
         assertEquals(776.61, TaxCalculator.primaryHealthTax, "Primary health tax mismatch");
         assertEquals(668.7475, TaxCalculator.secondaryHealthTax,  "Secondary health tax mismatch");
         assertEquals(1725.8, TaxCalculator.deductibleExpensesTax,  "Deductible expenses mismatch");
@@ -136,11 +136,11 @@ public class TaxCalculatorTest {
 
         assertEquals(1464.0, TaxCalculator.socialSecurityTax, "Social security tax mismatch");
         assertEquals(225.0, TaxCalculator.socialSecurityHealthTax, "Health social security tax mismatch");
-        assertEquals(0.0, TaxCalculator.socialSecuritySicknessTax, "Sickness social security tax mismatch");
+        assertEquals(367.5, TaxCalculator.socialSecuritySicknessTax, "Sickness social security tax mismatch");
         assertEquals(1164.915, TaxCalculator.primaryHealthTax, "Primary health tax mismatch");
         assertEquals(1003.12125, TaxCalculator.secondaryHealthTax, "Secondary health tax mismatch");
         assertEquals(2588.7, TaxCalculator.deductibleExpensesTax, "Deductible expenses mismatch");
-        assertEquals(9228.585,TaxCalculator.netIncome);
+        assertEquals(8861.085,TaxCalculator.netIncome);
     }
 
     @Test
@@ -151,11 +151,11 @@ public class TaxCalculatorTest {
 
         assertEquals(1464.0, TaxCalculator.socialSecurityTax, "Social security tax mismatch");
         assertEquals(225.0, TaxCalculator.socialSecurityHealthTax, "Health social security tax mismatch");
-        assertEquals(0.0, TaxCalculator.socialSecuritySicknessTax, "Sickness social security tax mismatch");
+        assertEquals(367.5, TaxCalculator.socialSecuritySicknessTax, "Sickness social security tax mismatch");
         assertEquals(1164.915, TaxCalculator.primaryHealthTax, "Primary health tax mismatch");
         assertEquals(1003.12125, TaxCalculator.secondaryHealthTax, "Secondary health tax mismatch");
         assertEquals(1260.0, TaxCalculator.advanceTaxPaid0, "Advance tax paid mismatch");
-        assertEquals(8829.585,TaxCalculator.netIncome);
+        assertEquals(8462.085,TaxCalculator.netIncome);
     }
     @Test
     void testCalculateEmploymentNetIncome_5000() {
@@ -165,11 +165,11 @@ public class TaxCalculatorTest {
 
         assertEquals(488.0, TaxCalculator.socialSecurityTax, "Social security tax mismatch");
         assertEquals(75.0, TaxCalculator.socialSecurityHealthTax, "Health social security tax mismatch");
-        assertEquals(0.0, TaxCalculator.socialSecuritySicknessTax, "Sickness social security tax mismatch");
+        assertEquals(122.5, TaxCalculator.socialSecuritySicknessTax, "Sickness social security tax mismatch");
         assertEquals(388.305, TaxCalculator.primaryHealthTax, "Primary health tax mismatch");
         assertEquals(334.37375, TaxCalculator.secondaryHealthTax, "Secondary health tax mismatch");
         assertEquals(376.0, TaxCalculator.advanceTaxPaid0, "Advance tax paid mismatch");
-        assertEquals(2987.1949999999997, TaxCalculator.netIncome, "Net income mismatch");
+        assertEquals(2864.6949999999997, TaxCalculator.netIncome, "Net income mismatch");
     }
 
 
@@ -181,11 +181,11 @@ public class TaxCalculatorTest {
 
         assertEquals(976.0, TaxCalculator.socialSecurityTax, "Social security tax mismatch");
         assertEquals(150.0, TaxCalculator.socialSecurityHealthTax, "Health social security tax mismatch");
-        assertEquals(0.0, TaxCalculator.socialSecuritySicknessTax, "Sickness social security tax mismatch");
+        assertEquals(245.0, TaxCalculator.socialSecuritySicknessTax, "Sickness social security tax mismatch");
         assertEquals(776.61, TaxCalculator.primaryHealthTax, "Primary health tax mismatch");
         assertEquals(668.7475, TaxCalculator.secondaryHealthTax, "Secondary health tax mismatch");
         assertEquals(1725.8, TaxCalculator.deductibleExpensesTax, "Deductible expenses mismatch");
-        assertEquals(6152.389999999999, TaxCalculator.netIncome, "Net income mismatch");
+        assertEquals(5907.389999999999, TaxCalculator.netIncome, "Net income mismatch");
     }
     @Test
     void testCalculateEmploymentNetIncome_10000() {
@@ -195,10 +195,10 @@ public class TaxCalculatorTest {
 
         assertEquals(976.0, TaxCalculator.socialSecurityTax, "Social security tax mismatch");
         assertEquals(150.0, TaxCalculator.socialSecurityHealthTax, "Health social security tax mismatch");
-        assertEquals(0.0, TaxCalculator.socialSecuritySicknessTax, "Sickness social security tax mismatch");
+        assertEquals(245.0, TaxCalculator.socialSecuritySicknessTax, "Sickness social security tax mismatch");
         assertEquals(776.61, TaxCalculator.primaryHealthTax, "Primary health tax mismatch");
         assertEquals(668.7475, TaxCalculator.secondaryHealthTax, "Secondary health tax mismatch");
         assertEquals(818.0, TaxCalculator.advanceTaxPaid0, "Advance tax paid mismatch");
-        assertEquals(5908.389999999999, TaxCalculator.netIncome, "Net income mismatch");
+        assertEquals(5663.389999999999, TaxCalculator.netIncome, "Net income mismatch");
     }
 }

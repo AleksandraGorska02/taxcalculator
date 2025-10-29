@@ -32,13 +32,17 @@ public class TaxCalculator {
 
 
         if (contractType == 'E') {
-            calculateEmploymentTax();
-//            TaxCalculation taxCalc  = new EmploymentTax(income);
-//            taxCalc.calculate();
-//            Printer.print(taxCalc.getDataToPrint());
+          //  calculateEmploymentTax();
+            TaxCalculation taxCalc  = new EmploymentTax(income);
+            taxCalc.calculate();
+            Printer.print(taxCalc.getDataToPrint());
 
         } else if (contractType == 'C') {
-            calculateCivilTax();
+      //    calculateCivilTax();
+
+           TaxCalculation taxCalc  = new CivilTax(income);
+           taxCalc.calculate();
+           Printer.print(taxCalc.getDataToPrint());
         } else {
             System.out.println("Unknown type of contract!");
         }
@@ -55,7 +59,7 @@ public class TaxCalculator {
     public static double calculateSocialSecurity(double income) {
         socialSecurityTax = (income * 9.76) / 100;
         socialSecurityHealthTax = (income * 1.5) / 100;
-        double socialSecuritySicknessTax = (income * 2.45) / 100;
+         socialSecuritySicknessTax = (income * 2.45) / 100;
         return (income - socialSecurityTax - socialSecurityHealthTax - socialSecuritySicknessTax);
     }
 
@@ -161,6 +165,15 @@ public class TaxCalculator {
         System.out.println("Advance tax  = "
                 + df00.format(advanceTaxPaid) + " rounded = "
                 + df.format(advanceTaxPaid0));
+
+        System.out.println("===================== "+income);
+        System.out.println("Income " + income);
+        System.out.println("Social Security Tax " + socialSecurityTax);
+        System.out.println("Social Security Health Tax " + socialSecurityHealthTax);
+        System.out.println("Sick Security Tax " + socialSecuritySicknessTax);
+        System.out.println("Primary Health Tax " + primaryHealthTax);
+        System.out.println("Advance Tax Paid " + advanceTaxPaid0);
+        System.out.println("===================== "+income);
         netIncome = income
                 - ((socialSecurityTax + socialSecurityHealthTax + socialSecuritySicknessTax) + primaryHealthTax + advanceTaxPaid0);
         System.out.println();
