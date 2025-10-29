@@ -33,6 +33,9 @@ public class TaxCalculator {
 
         if (contractType == 'E') {
             calculateEmploymentTax();
+//            TaxCalculation taxCalc  = new EmploymentTax(income);
+//            taxCalc.calculate();
+//            Printer.print(taxCalc.getDataToPrint());
 
         } else if (contractType == 'C') {
             calculateCivilTax();
@@ -42,7 +45,7 @@ public class TaxCalculator {
     }
 
     public static void calculateAdvanceTax() {
-        advanceTaxPaidadvanceTax = advanceTax - secondaryHealthTax - taxFreeIncome;
+        advanceTaxPaid = advanceTax - secondaryHealthTax - taxFreeIncome;
     }
 
     public static void calculateTax(double income) {
@@ -52,8 +55,8 @@ public class TaxCalculator {
     public static double calculateSocialSecurity(double income) {
         socialSecurityTax = (income * 9.76) / 100;
         socialSecurityHealthTax = (income * 1.5) / 100;
-        double soc_sick_secur = (income * 2.45) / 100;
-        return (income - socialSecurityTax - socialSecurityHealthTax - soc_sick_secur);
+        double socialSecuritySicknessTax = (income * 2.45) / 100;
+        return (income - socialSecurityTax - socialSecurityHealthTax - socialSecuritySicknessTax);
     }
 
     public static void calculateHealthTaxes(double income) {
@@ -93,7 +96,7 @@ public class TaxCalculator {
         System.out.println("Income " + income);
         income = calculateSocialSecurity(income);
         printSocialSecurityTaxes();//done
-
+        System.out.println(income);
         calculateHealthTaxes(income);//done
         printHealthTaxes();
 
@@ -106,6 +109,14 @@ public class TaxCalculator {
 
         calculateAdvanceTax();
         advanceTaxPaid0 = Double.parseDouble(df.format(advanceTaxPaid));
+        System.out.println("===================== "+income);
+        System.out.println("Income " + income);
+        System.out.println("Social Security Tax " + socialSecurityTax);
+        System.out.println("Social Security Health Tax " + socialSecurityHealthTax);
+        System.out.println("Sick Security Tax " + socialSecuritySicknessTax);
+        System.out.println("Primary Health Tax " + primaryHealthTax);
+        System.out.println("Advance Tax Paid " + advanceTaxPaid0);
+        System.out.println("===================== "+income);
         netIncome = income - ((socialSecurityTax + socialSecurityHealthTax + socialSecuritySicknessTax) + primaryHealthTax + advanceTaxPaid0);
 
         System.out.println("income " + taxedIncome + " rounded " + df.format(taxedIncome0));

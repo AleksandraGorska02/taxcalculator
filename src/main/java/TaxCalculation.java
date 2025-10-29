@@ -27,5 +27,7 @@ public abstract class TaxCalculation {
     public abstract void calculateAdvanceTax();
 
     public abstract void calculateNetIncome();
-
+    public HashMap<String, Object> getDataToPrint() {
+        return taxData;
+    }
 }

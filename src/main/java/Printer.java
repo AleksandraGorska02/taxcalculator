@@ -7,7 +7,7 @@ public class Printer {
 
     public static void print(HashMap<String, Object> data) {
         for (String key : data.keySet()) {
-            System.out.println(key + " : " + df.format((double) data.get(key)));
+            System.out.println(key + " : " + df00.format((double) data.get(key)));
         }
     }
 }
