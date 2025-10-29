@@ -1,5 +1,8 @@
 
 import org.junit.jupiter.api.Test;
+import taxLogic.CivilTax;
+import taxLogic.EmploymentTax;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TaxCalculatorTest {

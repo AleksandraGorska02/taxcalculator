@@ -1,8 +1,10 @@
+package taxLogic;
+
 import java.util.LinkedHashMap;
 
 public abstract class TaxCalculation {
     protected LinkedHashMap<String, Object> taxData = new LinkedHashMap<>();
-    protected double income;
+    public double income;
 
     public TaxCalculation(double income) {
         this.income = income;

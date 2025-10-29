@@ -1,24 +1,23 @@
-public class EmploymentTax extends TaxCalculation {
+package taxLogic;
 
-    public double socialSecurityTax;
-    public double socialSecurityHealthTax;
-    public double sickSecurityTax;
-    public double primaryHealthTax;
-    public double secondaryHealthTax;
-    public double taxedIncome;
-    public double deductibleExpensesTax;
-    public double advanceTax;
-    public double taxFreeIncome;
-    public double taxPaid;
-    public double advanceTaxPaid;
-    public double netIncome;
+public class CivilTax extends TaxCalculation {
+   public double socialSecurityTax;
+   public double socialSecurityHealthTax;
+   public double sickSecurityTax;
+   public double primaryHealthTax;
+   public double secondaryHealthTax;
+   public double deductibleExpensesTax;
+   public double taxedIncome;
+   public double advanceTax;
 
-
-    public EmploymentTax(double income) {
+   public double taxFreeIncome;
+   public double advanceTaxPaid;
+   public double netIncome;
+   public double taxPaid = 0;
+    public CivilTax(double income) {
         super(income);
     }
 
-    @Override
     public void calculateSocialSecurityTaxes() {
         socialSecurityTax = (income * 9.76) / 100;
         socialSecurityHealthTax = (income * 1.5) / 100;
@@ -43,31 +42,36 @@ public class EmploymentTax extends TaxCalculation {
         taxData.put("Health social security tax 7.75%", secondaryHealthTax);
     }
 
+
     @Override
     public void calculateDeductibleExpensesTax() {
-        deductibleExpensesTax = 111.25;
-        taxedIncome = income - deductibleExpensesTax;
+        deductibleExpensesTax = (income * 20) / 100;
 
-        taxData.put("Taxed income", taxedIncome);
+        taxedIncome = income - deductibleExpensesTax;
+        taxData.put("Tax deductible expenses", deductibleExpensesTax);
     }
 
     @Override
     public void calculateAdvanceTax() {
+
         advanceTax = (taxedIncome * 18) / 100;
-        taxFreeIncome = 46.33;
-        taxPaid = advanceTax - taxFreeIncome;
         advanceTaxPaid = advanceTax - secondaryHealthTax - taxFreeIncome;
 
-        taxData.put("Advance tax 18%", advanceTax);
-        taxData.put("Tax free income", taxFreeIncome);
-        taxData.put("Reduced tax", taxPaid);
-        taxData.put("Advance tax paid", advanceTaxPaid);
+        taxData.put("income to be taxed = ", taxedIncome);
+        taxData.put("Advance tax 18 % = ", advanceTax);
+        taxData.put("Already paid tax = ", taxPaid);
+        taxData.put("Advance tax ", advanceTaxPaid);
     }
 
     @Override
     public void calculateNetIncome() {
+        netIncome= income
+                - ((socialSecurityTax + socialSecurityHealthTax + sickSecurityTax) + primaryHealthTax + advanceTaxPaid);
+        taxData.put("Net income ", netIncome);
 
-        netIncome = income - ((socialSecurityTax + socialSecurityHealthTax- sickSecurityTax) + primaryHealthTax + advanceTaxPaid);
-        taxData.put("Net income", netIncome);
+
     }
+
+
+
 }
