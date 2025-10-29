@@ -1,7 +1,8 @@
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public abstract class TaxCalculation {
-    protected HashMap<String, Object> taxData = new HashMap<>();
+    protected LinkedHashMap<String, Object> taxData = new LinkedHashMap<>();
     protected double income;
 
     public TaxCalculation(double income) {
@@ -27,7 +28,7 @@ public abstract class TaxCalculation {
     public abstract void calculateAdvanceTax();
 
     public abstract void calculateNetIncome();
-    public HashMap<String, Object> getDataToPrint() {
+    public LinkedHashMap<String, Object> getDataToPrint() {
         return taxData;
     }
 }
