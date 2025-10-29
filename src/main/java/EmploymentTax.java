@@ -1,5 +1,3 @@
-import java.text.DecimalFormat;
-
 public class EmploymentTax extends TaxCalculation {
 
     public double socialSecurityTax;

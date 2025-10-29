@@ -1,5 +1,3 @@
-import java.util.HashMap;
-
 public class CivilTax extends  TaxCalculation {
    public double socialSecurityTax;
    public double socialSecurityHealthTax;

@@ -4,22 +4,19 @@ import java.io.InputStreamReader;
 public class InputHandler {
 
     public static double getIncome() {
-        double income = 0;
+        double income;
         try {
             InputStreamReader isr = new InputStreamReader(System.in);
             BufferedReader br = new BufferedReader(isr);
             System.out.print("Enter income: ");
-            income = Double.parseDouble(br.readLine());
-        } catch (Exception ex) {
-            System.out.println("Incorrect income input");
-            System.err.println(ex);
-            System.exit(1);
+               income = Double.parseDouble(br.readLine());
+        } catch (Exception ex) {   throw new IllegalArgumentException("Incorrect contract type input", ex);
         }
         return income;
     }
 
     public static char getContractType() {
-        char contractType = ' ';
+        char contractType;
         try {
             InputStreamReader isr = new InputStreamReader(System.in);
             BufferedReader br = new BufferedReader(isr);
@@ -32,9 +29,7 @@ public class InputHandler {
             }
 
         } catch (Exception ex) {
-            System.out.println("Incorrect contract type input");
-            System.err.println(ex);
-            System.exit(1);
+            throw new IllegalArgumentException("Incorrect contract type input", ex);
         }
         return contractType;
     }
