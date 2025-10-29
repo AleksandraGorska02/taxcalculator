@@ -19,7 +19,7 @@ public abstract class TaxCalculation {
     public double taxFreeIncome;
     public double advanceTaxPaid;
     public double netIncome;
-    public double taxPaid = 0;
+    public double taxPaid;
 
     public TaxCalculation(double income) {
         this.income = income;
@@ -44,6 +44,7 @@ public abstract class TaxCalculation {
     public abstract void calculateAdvanceTax();
 
     public abstract void calculateNetIncome();
+
     public LinkedHashMap<String, Object> getDataToPrint() {
         return taxData;
     }
