@@ -1,19 +1,8 @@
 package taxLogic;
 
 public class CivilTax extends TaxCalculation {
-   public double socialSecurityTax;
-   public double socialSecurityHealthTax;
-   public double sickSecurityTax;
-   public double primaryHealthTax;
-   public double secondaryHealthTax;
-   public double deductibleExpensesTax;
-   public double taxedIncome;
-   public double advanceTax;
 
-   public double taxFreeIncome;
-   public double advanceTaxPaid;
-   public double netIncome;
-   public double taxPaid = 0;
+
     public CivilTax(double income) {
         super(income);
     }

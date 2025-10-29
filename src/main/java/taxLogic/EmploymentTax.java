@@ -2,18 +2,7 @@ package taxLogic;
 
 public class EmploymentTax extends TaxCalculation {
 
-    public double socialSecurityTax;
-    public double socialSecurityHealthTax;
-    public double sickSecurityTax;
-    public double primaryHealthTax;
-    public double secondaryHealthTax;
-    public double taxedIncome;
-    public double deductibleExpensesTax;
-    public double advanceTax;
-    public double taxFreeIncome;
-    public double taxPaid;
-    public double advanceTaxPaid;
-    public double netIncome;
+
 
 
     public EmploymentTax(double income) {
