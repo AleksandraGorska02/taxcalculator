@@ -1,19 +1,19 @@
 import java.util.HashMap;
 
 public class CivilTax extends  TaxCalculation {
-    private double socialSecurityTax;
-    private double socialSecurityHealthTax;
-    private double sickSecurityTax;
-    private double primaryHealthTax;
-    private double secondaryHealthTax;
-    private double deductibleExpensesTax;
-    private double taxedIncome;
-    private double advanceTax;
+   public double socialSecurityTax;
+   public double socialSecurityHealthTax;
+   public double sickSecurityTax;
+   public double primaryHealthTax;
+   public double secondaryHealthTax;
+   public double deductibleExpensesTax;
+   public double taxedIncome;
+   public double advanceTax;
 
-    private double taxFreeIncome;
-    private double advanceTaxPaid;
-    private double netIncome;
-    private double taxPaid = 0;
+   public double taxFreeIncome;
+   public double advanceTaxPaid;
+   public double netIncome;
+   public double taxPaid = 0;
     public CivilTax(double income) {
         super(income);
     }

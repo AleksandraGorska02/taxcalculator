@@ -2,21 +2,19 @@ import java.text.DecimalFormat;
 
 public class EmploymentTax extends TaxCalculation {
 
-    private double socialSecurityTax;
-    private double socialSecurityHealthTax;
-    private double sickSecurityTax;
-    private double primaryHealthTax;
-    private double secondaryHealthTax;
-    private double taxedIncome;
-    private double deductibleExpensesTax;
-    private double advanceTax;
-    private double taxFreeIncome;
-    private double taxPaid;
-    private double advanceTaxPaid;
-    private double netIncome;
+    public double socialSecurityTax;
+    public double socialSecurityHealthTax;
+    public double sickSecurityTax;
+    public double primaryHealthTax;
+    public double secondaryHealthTax;
+    public double taxedIncome;
+    public double deductibleExpensesTax;
+    public double advanceTax;
+    public double taxFreeIncome;
+    public double taxPaid;
+    public double advanceTaxPaid;
+    public double netIncome;
 
-    private final DecimalFormat df = new DecimalFormat("#");
-    private final DecimalFormat df00 = new DecimalFormat(".00");
 
     public EmploymentTax(double income) {
         super(income);

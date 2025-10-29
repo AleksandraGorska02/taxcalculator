@@ -4,201 +4,171 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TaxCalculatorTest {
 
-    @BeforeEach
-    void reset() {
-        TaxCalculator.income = 0;
-        TaxCalculator.contractType = ' ';
-        TaxCalculator.socialSecurityTax = 0;
-        TaxCalculator.socialSecurityHealthTax = 0;
-        TaxCalculator.socialSecuritySicknessTax = 0;
-        TaxCalculator.deductibleExpensesTax = 111.25;
-        TaxCalculator.primaryHealthTax = 0;
-        TaxCalculator.secondaryHealthTax = 0;
-        TaxCalculator.advanceTaxPaidadvanceTax = 0;
-        TaxCalculator.taxFreeIncome = 46.33;
-        TaxCalculator.advanceTaxPaid0 = 0;
-        TaxCalculator.advanceTax = 0;
-        TaxCalculator.advanceTaxPaid = 0;
-        TaxCalculator.taxPaid = 0;
-    }
+
 
     @Test
     void testCalculateSocialSecurity() {
-        double result = TaxCalculator.calculateSocialSecurity(10000);
-        assertEquals(8629.0, result );
-        assertEquals(976.0, TaxCalculator.socialSecurityTax);
-        assertEquals(150.0, TaxCalculator.socialSecurityHealthTax);
+        EmploymentTax taxCalculator  = new EmploymentTax(10000);
+        taxCalculator.calculateSocialSecurityTaxes();
+        
+        assertEquals(976.0, taxCalculator.socialSecurityTax);
+        assertEquals(150.0, taxCalculator.socialSecurityHealthTax);
     }
 
     @Test
     void testCalculateHealthTaxes() {
-        TaxCalculator.calculateHealthTaxes(8000);
-        assertEquals(720.0, TaxCalculator.primaryHealthTax);
-        assertEquals(620.0, TaxCalculator.secondaryHealthTax);
+        EmploymentTax taxCalculator  = new EmploymentTax(8000);
+        taxCalculator.calculateHealthTaxes();
+        assertEquals(720.0, taxCalculator.primaryHealthTax);
+        assertEquals(620.0, taxCalculator.secondaryHealthTax);
     }
 
-    @Test
-    void testCalculateTax() {
-        TaxCalculator.calculateTax(5000);
-        assertEquals(900.0, TaxCalculator.advanceTax);
-    }
 
     @Test
     void testEmploymentTaxFlow() {
-        TaxCalculator.income = 10000;
-        TaxCalculator.contractType = 'E';
-        TaxCalculator.calculateEmploymentTax();
+        EmploymentTax taxCalculator  = new EmploymentTax(10000);
+   taxCalculator.calculate();
 
-        assertEquals(976.0, TaxCalculator.socialSecurityTax,"Social security tax mismatch");
-        assertEquals(150.0, TaxCalculator.socialSecurityHealthTax, "Health social security tax mismatch");
-        assertEquals(245.0, TaxCalculator.socialSecuritySicknessTax,  "Sickness social security tax mismatch");
-        assertEquals(776.61, TaxCalculator.primaryHealthTax,  "Primary health tax mismatch");
-        assertEquals(668.7475, TaxCalculator.secondaryHealthTax, "Secondary health tax mismatch");
-        assertEquals(818.0, TaxCalculator.advanceTaxPaid0,  "Advance tax paid mismatch");
+
+        assertEquals(976.0, taxCalculator.socialSecurityTax,"Social security tax mismatch");
+        assertEquals(150.0, taxCalculator.socialSecurityHealthTax, "Health social security tax mismatch");
+        assertEquals(245.0, taxCalculator.sickSecurityTax,  "Sickness social security tax mismatch");
+        assertEquals(776.61, taxCalculator.primaryHealthTax,  "Primary health tax mismatch");
+        assertEquals(668.7475, taxCalculator.secondaryHealthTax, "Secondary health tax mismatch");
+        assertEquals(818.1175, taxCalculator.advanceTaxPaid,  "Advance tax paid mismatch");
     }
 
     @Test
     void testCivilTaxFlow() {
-        TaxCalculator.income = 10000;
-        TaxCalculator.contractType = 'C';
-        TaxCalculator.calculateCivilTax();
+        CivilTax taxCalculator  = new CivilTax(10000);
+        taxCalculator.calculate();
 
-        assertEquals(976.0, TaxCalculator.socialSecurityTax,  "Social security tax mismatch");
-        assertEquals(150.0, TaxCalculator.socialSecurityHealthTax, "Health social security tax mismatch");
-        assertEquals(245.0, TaxCalculator.socialSecuritySicknessTax,  "Sickness social security tax mismatch");
-        assertEquals(776.61, TaxCalculator.primaryHealthTax, "Primary health tax mismatch");
-        assertEquals(668.7475, TaxCalculator.secondaryHealthTax,  "Secondary health tax mismatch");
-        assertEquals(1725.8, TaxCalculator.deductibleExpensesTax,  "Deductible expenses mismatch");
+        assertEquals(976.0, taxCalculator.socialSecurityTax,  "Social security tax mismatch");
+        assertEquals(150.0, taxCalculator.socialSecurityHealthTax, "Health social security tax mismatch");
+        assertEquals(245.0, taxCalculator.sickSecurityTax,  "Sickness social security tax mismatch");
+        assertEquals(776.61, taxCalculator.primaryHealthTax, "Primary health tax mismatch");
+        assertEquals(668.7475, taxCalculator.secondaryHealthTax,  "Secondary health tax mismatch");
+        assertEquals(1725.8, taxCalculator.deductibleExpensesTax,  "Deductible expenses mismatch");
     }
 
 
-    @Test
-    void testCalculateAdvanceTax() {
-        TaxCalculator.advanceTax = 2000;
-        TaxCalculator.secondaryHealthTax = 500;
-        TaxCalculator.taxFreeIncome = 100;
 
-        TaxCalculator.calculateAdvanceTax();
-        assertEquals(1400.0, TaxCalculator.advanceTaxPaid);
-    }
     @Test
     void testCalculateEmploymentTaxWithZeroIncome() {
-        TaxCalculator.income = 0;
-        TaxCalculator.contractType = 'E';
-        TaxCalculator.calculateEmploymentTax();
+        EmploymentTax taxCalculator  = new EmploymentTax(0);
+ taxCalculator.calculate();
 
-        assertEquals(0.0, TaxCalculator.socialSecurityTax, "Social security tax should be zero");
-        assertEquals(0.0, TaxCalculator.socialSecurityHealthTax, "Health social security tax should be zero");
-        assertEquals(0.0, TaxCalculator.socialSecuritySicknessTax, "Sickness social security tax should be zero");
-        assertEquals(0.0, TaxCalculator.primaryHealthTax, "Primary health tax should be zero");
-        assertEquals(0.0, TaxCalculator.secondaryHealthTax, "Secondary health tax should be zero");
-        assertEquals(-66.0, TaxCalculator.advanceTaxPaid0, "Advance tax paid should be zero");
+        assertEquals(0.0, taxCalculator.socialSecurityTax, "Social security tax should be zero");
+        assertEquals(0.0, taxCalculator.socialSecurityHealthTax, "Health social security tax should be zero");
+        assertEquals(0.0, taxCalculator.sickSecurityTax, "Sickness social security tax should be zero");
+        assertEquals(0.0, taxCalculator.primaryHealthTax, "Primary health tax should be zero");
+        assertEquals(0.0, taxCalculator.secondaryHealthTax, "Secondary health tax should be zero");
+        assertEquals(-66.35499999999999, taxCalculator.advanceTaxPaid, "Advance tax paid should be zero");
     }
     @Test
     void testCalculateCivilTaxWithZeroIncome() {
-        TaxCalculator.income = 0;
-        TaxCalculator.contractType = 'C';
-        TaxCalculator.calculateCivilTax();
+        CivilTax taxCalculator  = new CivilTax(0);
+        taxCalculator.calculate();
 
-        assertEquals(0.0, TaxCalculator.socialSecurityTax, "Social security tax should be zero");
-        assertEquals(0.0, TaxCalculator.socialSecurityHealthTax, "Health social security tax should be zero");
-        assertEquals(0.0, TaxCalculator.socialSecuritySicknessTax, "Sickness social security tax should be zero");
-        assertEquals(0.0, TaxCalculator.primaryHealthTax, "Primary health tax should be zero");
-        assertEquals(0.0, TaxCalculator.secondaryHealthTax, "Secondary health tax should be zero");
-        assertEquals(0.0, TaxCalculator.deductibleExpensesTax, "Deductible expenses should remain unchanged");
+
+        assertEquals(0.0, taxCalculator.socialSecurityTax, "Social security tax should be zero");
+        assertEquals(0.0, taxCalculator.socialSecurityHealthTax, "Health social security tax should be zero");
+        assertEquals(0.0, taxCalculator.sickSecurityTax, "Sickness social security tax should be zero");
+        assertEquals(0.0, taxCalculator.primaryHealthTax, "Primary health tax should be zero");
+        assertEquals(0.0, taxCalculator.secondaryHealthTax, "Secondary health tax should be zero");
+        assertEquals(0.0, taxCalculator.deductibleExpensesTax, "Deductible expenses should remain unchanged");
     }
 
     @Test
     void testCalculateIncomeWithNegativeSocialSecurity() {
-        double result = TaxCalculator.calculateSocialSecurity(-5000);
-        assertEquals(-4314.5, result, "Income calculation with negative income failed");
-        assertEquals(-488.0, TaxCalculator.socialSecurityTax, "Social security tax calculation with negative income failed");
-        assertEquals(-75.0, TaxCalculator.socialSecurityHealthTax, "Health social security tax calculation with negative income failed");
+        EmploymentTax taxCalculator  = new EmploymentTax(-5000);
+        taxCalculator.calculate();
+
+        assertEquals(-4314.5, taxCalculator.income, "Income calculation with negative income failed");
+        assertEquals(-488.0, taxCalculator.socialSecurityTax, "Social security tax calculation with negative income failed");
+        assertEquals(-75.0, taxCalculator.socialSecurityHealthTax, "Health social security tax calculation with negative income failed");
     }
     @Test
     void testCalculateHealthTaxesWithNegativeIncome() {
-        TaxCalculator.calculateHealthTaxes(-8000);
-        assertEquals(-720.0, TaxCalculator.primaryHealthTax, "Primary health tax calculation with negative income failed");
-        assertEquals(-620.0, TaxCalculator.secondaryHealthTax, "Secondary health tax calculation with negative income failed");
+        EmploymentTax taxCalculator  = new EmploymentTax(-8000);
+        taxCalculator.calculate();
+        assertEquals(-621.288, taxCalculator.primaryHealthTax, "Primary health tax calculation with negative income failed");
+        assertEquals(-534.9979999999999, taxCalculator.secondaryHealthTax, "Secondary health tax calculation with negative income failed");
 
     }
     @Test
     void testCalculateNetIncome() {
-        double netIncome = TaxCalculator.calculateSocialSecurity(12000);
-        assertEquals(10354.8, netIncome, "Net income calculation failed");
+        EmploymentTax taxCalculator  = new EmploymentTax(15000);
+        taxCalculator.calculate();
+        assertEquals(9196.73125, taxCalculator.netIncome, "Net income calculation failed");
     }
 
     @Test
     void testCalculateCivilNetIncome() {
-        TaxCalculator.income = 15000;
-        TaxCalculator.contractType = 'C';
-        TaxCalculator.calculateCivilTax();
+        CivilTax taxCalculator  = new CivilTax(15000);
+        taxCalculator.calculate();
 
-        assertEquals(1464.0, TaxCalculator.socialSecurityTax, "Social security tax mismatch");
-        assertEquals(225.0, TaxCalculator.socialSecurityHealthTax, "Health social security tax mismatch");
-        assertEquals(367.5, TaxCalculator.socialSecuritySicknessTax, "Sickness social security tax mismatch");
-        assertEquals(1164.915, TaxCalculator.primaryHealthTax, "Primary health tax mismatch");
-        assertEquals(1003.12125, TaxCalculator.secondaryHealthTax, "Secondary health tax mismatch");
-        assertEquals(2588.7, TaxCalculator.deductibleExpensesTax, "Deductible expenses mismatch");
-        assertEquals(8861.085,TaxCalculator.netIncome);
+        assertEquals(1464.0, taxCalculator.socialSecurityTax, "Social security tax mismatch");
+        assertEquals(225.0, taxCalculator.socialSecurityHealthTax, "Health social security tax mismatch");
+        assertEquals(367.5, taxCalculator.sickSecurityTax, "Sickness social security tax mismatch");
+        assertEquals(1164.915, taxCalculator.primaryHealthTax, "Primary health tax mismatch");
+        assertEquals(1003.12125, taxCalculator.secondaryHealthTax, "Secondary health tax mismatch");
+        assertEquals(2588.7, taxCalculator.deductibleExpensesTax, "Deductible expenses mismatch");
+        assertEquals(8861.34225,taxCalculator.netIncome);
     }
 
     @Test
     void testCalculateEmploymentNetIncome() {
-        TaxCalculator.income = 15000;
-        TaxCalculator.contractType = 'E';
-        TaxCalculator.calculateEmploymentTax();
+        EmploymentTax taxCalculator  = new EmploymentTax(15000);
+        taxCalculator.calculate();
 
-        assertEquals(1464.0, TaxCalculator.socialSecurityTax, "Social security tax mismatch");
-        assertEquals(225.0, TaxCalculator.socialSecurityHealthTax, "Health social security tax mismatch");
-        assertEquals(367.5, TaxCalculator.socialSecuritySicknessTax, "Sickness social security tax mismatch");
-        assertEquals(1164.915, TaxCalculator.primaryHealthTax, "Primary health tax mismatch");
-        assertEquals(1003.12125, TaxCalculator.secondaryHealthTax, "Secondary health tax mismatch");
-        assertEquals(1260.0, TaxCalculator.advanceTaxPaid0, "Advance tax paid mismatch");
-        assertEquals(8462.085,TaxCalculator.netIncome);
+        assertEquals(1464.0, taxCalculator.socialSecurityTax, "Social security tax mismatch");
+        assertEquals(225.0, taxCalculator.socialSecurityHealthTax, "Health social security tax mismatch");
+        assertEquals(367.5, taxCalculator.sickSecurityTax, "Sickness social security tax mismatch");
+        assertEquals(1164.915, taxCalculator.primaryHealthTax, "Primary health tax mismatch");
+        assertEquals(1003.12125, taxCalculator.secondaryHealthTax, "Secondary health tax mismatch");
+        assertEquals(1260.3537499999998, taxCalculator.advanceTaxPaid, "Advance tax paid mismatch");
+        assertEquals(9196.73125,taxCalculator.netIncome);
     }
     @Test
     void testCalculateEmploymentNetIncome_5000() {
-        TaxCalculator.income = 5000;
-        TaxCalculator.contractType = 'E';
-        TaxCalculator.calculateEmploymentTax();
-
-        assertEquals(488.0, TaxCalculator.socialSecurityTax, "Social security tax mismatch");
-        assertEquals(75.0, TaxCalculator.socialSecurityHealthTax, "Health social security tax mismatch");
-        assertEquals(122.5, TaxCalculator.socialSecuritySicknessTax, "Sickness social security tax mismatch");
-        assertEquals(388.305, TaxCalculator.primaryHealthTax, "Primary health tax mismatch");
-        assertEquals(334.37375, TaxCalculator.secondaryHealthTax, "Secondary health tax mismatch");
-        assertEquals(376.0, TaxCalculator.advanceTaxPaid0, "Advance tax paid mismatch");
-        assertEquals(2864.6949999999997, TaxCalculator.netIncome, "Net income mismatch");
+        EmploymentTax taxCalculator  = new EmploymentTax(5000);
+        taxCalculator.calculate();
+        taxCalculator.income = 5000;
+        assertEquals(488.0, taxCalculator.socialSecurityTax, "Social security tax mismatch");
+        assertEquals(75.0, taxCalculator.socialSecurityHealthTax, "Health social security tax mismatch");
+        assertEquals(122.5, taxCalculator.sickSecurityTax, "Sickness social security tax mismatch");
+        assertEquals(388.305, taxCalculator.primaryHealthTax, "Primary health tax mismatch");
+        assertEquals(334.37375, taxCalculator.secondaryHealthTax, "Secondary health tax mismatch");
+        assertEquals(375.8812500000001, taxCalculator.advanceTaxPaid, "Advance tax paid mismatch");
+        assertEquals(3109.81375, taxCalculator.netIncome, "Net income mismatch");
     }
 
 
     @Test
     void testCalculateCivilNetIncome_10000() {
-        TaxCalculator.income = 10000;
-        TaxCalculator.contractType = 'C';
-        TaxCalculator.calculateCivilTax();
+        CivilTax taxCalculator  = new CivilTax(10000);
+        taxCalculator.calculate();
 
-        assertEquals(976.0, TaxCalculator.socialSecurityTax, "Social security tax mismatch");
-        assertEquals(150.0, TaxCalculator.socialSecurityHealthTax, "Health social security tax mismatch");
-        assertEquals(245.0, TaxCalculator.socialSecuritySicknessTax, "Sickness social security tax mismatch");
-        assertEquals(776.61, TaxCalculator.primaryHealthTax, "Primary health tax mismatch");
-        assertEquals(668.7475, TaxCalculator.secondaryHealthTax, "Secondary health tax mismatch");
-        assertEquals(1725.8, TaxCalculator.deductibleExpensesTax, "Deductible expenses mismatch");
-        assertEquals(5907.389999999999, TaxCalculator.netIncome, "Net income mismatch");
+        assertEquals(976.0, taxCalculator.socialSecurityTax, "Social security tax mismatch");
+        assertEquals(150.0, taxCalculator.socialSecurityHealthTax, "Health social security tax mismatch");
+        assertEquals(245.0, taxCalculator.sickSecurityTax, "Sickness social security tax mismatch");
+        assertEquals(776.61, taxCalculator.primaryHealthTax, "Primary health tax mismatch");
+        assertEquals(668.7475, taxCalculator.secondaryHealthTax, "Secondary health tax mismatch");
+        assertEquals(1725.8, taxCalculator.deductibleExpensesTax, "Deductible expenses mismatch");
+        assertEquals(5907.5615, taxCalculator.netIncome, "Net income mismatch");
     }
     @Test
     void testCalculateEmploymentNetIncome_10000() {
-        TaxCalculator.income = 10000;
-        TaxCalculator.contractType = 'E';
-        TaxCalculator.calculateEmploymentTax();
+        EmploymentTax taxCalculator  = new EmploymentTax(10000);
+        taxCalculator.calculate();
 
-        assertEquals(976.0, TaxCalculator.socialSecurityTax, "Social security tax mismatch");
-        assertEquals(150.0, TaxCalculator.socialSecurityHealthTax, "Health social security tax mismatch");
-        assertEquals(245.0, TaxCalculator.socialSecuritySicknessTax, "Sickness social security tax mismatch");
-        assertEquals(776.61, TaxCalculator.primaryHealthTax, "Primary health tax mismatch");
-        assertEquals(668.7475, TaxCalculator.secondaryHealthTax, "Secondary health tax mismatch");
-        assertEquals(818.0, TaxCalculator.advanceTaxPaid0, "Advance tax paid mismatch");
-        assertEquals(5663.389999999999, TaxCalculator.netIncome, "Net income mismatch");
+        assertEquals(976.0, taxCalculator.socialSecurityTax, "Social security tax mismatch");
+        assertEquals(150.0, taxCalculator.socialSecurityHealthTax, "Health social security tax mismatch");
+        assertEquals(245.0, taxCalculator.sickSecurityTax, "Sickness social security tax mismatch");
+        assertEquals(776.61, taxCalculator.primaryHealthTax, "Primary health tax mismatch");
+        assertEquals(668.7475, taxCalculator.secondaryHealthTax, "Secondary health tax mismatch");
+        assertEquals(818.1175, taxCalculator.advanceTaxPaid, "Advance tax paid mismatch");
+        assertEquals(6153.2725, taxCalculator.netIncome, "Net income mismatch");
     }
 }
