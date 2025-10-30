@@ -7,6 +7,7 @@ public class CivilTax extends TaxCalculation {
         super(income);
     }
 
+    @Override
     public void calculateSocialSecurityTaxes() {
         socialSecurityTax = (income * 9.76) / 100;
         socialSecurityHealthTax = (income * 1.5) / 100;
