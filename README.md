@@ -62,10 +62,12 @@ and utils, where I moved InputHandler and Pirinter.
 <br />
 <br/>
 10. After refactoring, I noticed that each of the implementing classes uses the same variables, so I moved their declaration to the TaxCalculation class. There is code duplication in the implementations of these classes (in two functions), but I decided to leave it as it is because it will make any potential future changes in calculations for different types easier.
-
+    <br />
+    <br/>
 11. Cleanup<br/>
 In this step, however, I decided to change the implementation of the calculation functions and separate the logic responsible for transferring data into separate functions implemented immediately after the calculation function. (Many small functions instead of one large one, as I had initially considered.) This way, the principle of single responsibility will be preserved.
-
+    <br />
+    <br/>
 12. Final Cleanup<br/>
 ```
  if (contractType == 'E') {
@@ -85,3 +87,5 @@ In this step, however, I decided to change the implementation of the calculation
         }
 ```
 I also thought about this piece of code, wondering whether it would be better to leave it as it is so as not to add new files, but in the end I decided to use the factory pattern here. This adds extra code but makes it easier to add new contract types/subtypes in the future.
+<br/>
+When extracting constants, I decided to place them in class implementations because when changes are made, it will be easier to adjust them for each contract independently.
