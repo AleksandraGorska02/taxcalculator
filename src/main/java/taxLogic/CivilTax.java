@@ -3,15 +3,23 @@ package taxLogic;
 public class CivilTax extends TaxCalculation {
 
 
+    public static final double SOCIAL_SECURITY_TAX_PERCENTAGE = 9.76;
+    public static final double SOCIAL_SECURITY_HEALTH_TAX_PERCENTAGE = 1.5;
+    public static final double SICK_SECURITY_TAX_PERCENTAGE = 2.45;
+    public static final int PRIMARY_HEALTH_TAX_PERCENTAGE = 9;
+    public static final double SECONDARY_HEALTH_TAX_PERCENTAGE = 7.75;
+    public static final int ADVANCE_TAX_PERCENTAGE = 18;
+    public static final int DEDUCTIBLE_EXPENSES_TAX_PERCENTAGE = 20;
+
     public CivilTax(double income) {
         super(income);
     }
 
     @Override
     public void calculateSocialSecurityTaxes() {
-        socialSecurityTax = (income * 9.76) / 100;
-        socialSecurityHealthTax = (income * 1.5) / 100;
-        sickSecurityTax = (income * 2.45) / 100;
+        socialSecurityTax = (income * SOCIAL_SECURITY_TAX_PERCENTAGE) / 100;
+        socialSecurityHealthTax = (income * SOCIAL_SECURITY_HEALTH_TAX_PERCENTAGE) / 100;
+        sickSecurityTax = (income * SICK_SECURITY_TAX_PERCENTAGE) / 100;
 
         putSocialSecurityTax();
 
@@ -33,8 +41,8 @@ public class CivilTax extends TaxCalculation {
 
     @Override
     public void calculateHealthTaxes() {
-        primaryHealthTax = (income * 9) / 100;
-        secondaryHealthTax = (income * 7.75) / 100;
+        primaryHealthTax = (income * PRIMARY_HEALTH_TAX_PERCENTAGE) / 100;
+        secondaryHealthTax = (income * SECONDARY_HEALTH_TAX_PERCENTAGE) / 100;
 
         putHealthTax();
     }
@@ -47,7 +55,7 @@ public class CivilTax extends TaxCalculation {
 
     @Override
     public void calculateDeductibleExpensesTax() {
-        deductibleExpensesTax = (income * 20) / 100;
+        deductibleExpensesTax = (income * DEDUCTIBLE_EXPENSES_TAX_PERCENTAGE) / 100;
 
         taxedIncome = income - deductibleExpensesTax;
         putTaxedIncome();
@@ -60,7 +68,7 @@ public class CivilTax extends TaxCalculation {
     @Override
     public void calculateAdvanceTax() {
 
-        advanceTax = (taxedIncome * 18) / 100;
+        advanceTax = (taxedIncome * ADVANCE_TAX_PERCENTAGE) / 100;
         advanceTaxPaid = advanceTax - secondaryHealthTax - taxFreeIncome;
 
         putAdvanceTax();

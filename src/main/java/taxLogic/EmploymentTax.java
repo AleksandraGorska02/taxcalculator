@@ -3,7 +3,14 @@ package taxLogic;
 public class EmploymentTax extends TaxCalculation {
 
 
-
+    public static final double SOCIAL_SECURITY_TAX_PERCENTAGE = 9.76;
+    public static final double SOCIAL_SECURITY_HEALTH_TAX_PERCENTAGE = 1.5;
+    public static final double SICK_SECURITY_TAX_PERCENTAGE = 2.45;
+    public static final int PRIMARY_HEALTH_TAX_PERCENTAGE = 9;
+    public static final double SECONDARY_HEALTH_TAX_PERCENTAGE = 7.75;
+    public static final double DEDUCTIBLE_EXPENSES_TAX = 111.25;
+    public static final int ADVANCE_TAX_PERCENTAGE = 18;
+    public static final double TAX_FREE_INCOME = 46.33;
 
     public EmploymentTax(double income) {
         super(income);
@@ -11,9 +18,9 @@ public class EmploymentTax extends TaxCalculation {
 
     @Override
     public void calculateSocialSecurityTaxes() {
-        socialSecurityTax = (income * 9.76) / 100;
-        socialSecurityHealthTax = (income * 1.5) / 100;
-        sickSecurityTax = (income * 2.45) / 100;
+        socialSecurityTax = (income * SOCIAL_SECURITY_TAX_PERCENTAGE) / 100;
+        socialSecurityHealthTax = (income * SOCIAL_SECURITY_HEALTH_TAX_PERCENTAGE) / 100;
+        sickSecurityTax = (income * SICK_SECURITY_TAX_PERCENTAGE) / 100;
 
         putSocialSecurityTax();
 
@@ -35,8 +42,8 @@ public class EmploymentTax extends TaxCalculation {
 
     @Override
     public void calculateHealthTaxes() {
-        primaryHealthTax = (income * 9) / 100;
-        secondaryHealthTax = (income * 7.75) / 100;
+        primaryHealthTax = (income * PRIMARY_HEALTH_TAX_PERCENTAGE) / 100;
+        secondaryHealthTax = (income * SECONDARY_HEALTH_TAX_PERCENTAGE) / 100;
 
         putHealthTax();
     }
@@ -48,7 +55,7 @@ public class EmploymentTax extends TaxCalculation {
 
     @Override
     public void calculateDeductibleExpensesTax() {
-        deductibleExpensesTax = 111.25;
+        deductibleExpensesTax = DEDUCTIBLE_EXPENSES_TAX;
         taxedIncome = income - deductibleExpensesTax;
 
         putTaxedIncome();
@@ -60,8 +67,8 @@ public class EmploymentTax extends TaxCalculation {
 
     @Override
     public void calculateAdvanceTax() {
-        advanceTax = (taxedIncome * 18) / 100;
-        taxFreeIncome = 46.33;
+        advanceTax = (taxedIncome * ADVANCE_TAX_PERCENTAGE) / 100;
+        taxFreeIncome = TAX_FREE_INCOME;
         taxPaid = advanceTax - taxFreeIncome;
         advanceTaxPaid = advanceTax - secondaryHealthTax - taxFreeIncome;
 
