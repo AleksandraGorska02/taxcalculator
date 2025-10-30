@@ -15,14 +15,22 @@ public class EmploymentTax extends TaxCalculation {
         socialSecurityHealthTax = (income * 1.5) / 100;
         sickSecurityTax = (income * 2.45) / 100;
 
+        putSocialSecurityTax();
+
+        // Basis for health tax
+        income = income - socialSecurityTax - socialSecurityHealthTax - sickSecurityTax;
+        putBasicIncome();
+    }
+
+    private void putBasicIncome() {
+        taxData.put("Income basis for health social security", income);
+    }
+
+    private void putSocialSecurityTax() {
         taxData.put("Income", income);
         taxData.put("Social security tax", socialSecurityTax);
         taxData.put("Health social security tax", socialSecurityHealthTax);
         taxData.put("Sickness social security tax", sickSecurityTax);
-
-        // Basis for health tax
-        income = income - socialSecurityTax - socialSecurityHealthTax - sickSecurityTax;
-        taxData.put("Income basis for health social security", income);
     }
 
     @Override
@@ -30,6 +38,10 @@ public class EmploymentTax extends TaxCalculation {
         primaryHealthTax = (income * 9) / 100;
         secondaryHealthTax = (income * 7.75) / 100;
 
+        putHealthTax();
+    }
+
+    private void putHealthTax() {
         taxData.put("Health social security tax 9%", primaryHealthTax);
         taxData.put("Health social security tax 7.75%", secondaryHealthTax);
     }
@@ -39,6 +51,10 @@ public class EmploymentTax extends TaxCalculation {
         deductibleExpensesTax = 111.25;
         taxedIncome = income - deductibleExpensesTax;
 
+        putTaxedIncome();
+    }
+
+    private void putTaxedIncome() {
         taxData.put("Taxed income", taxedIncome);
     }
 
@@ -49,6 +65,10 @@ public class EmploymentTax extends TaxCalculation {
         taxPaid = advanceTax - taxFreeIncome;
         advanceTaxPaid = advanceTax - secondaryHealthTax - taxFreeIncome;
 
+        putAdvanceTax();
+    }
+
+    private void putAdvanceTax() {
         taxData.put("Advance tax 18%", advanceTax);
         taxData.put("Tax free income", taxFreeIncome);
         taxData.put("Reduced tax", taxPaid);
@@ -59,6 +79,10 @@ public class EmploymentTax extends TaxCalculation {
     public void calculateNetIncome() {
 
         netIncome = income - ((socialSecurityTax + socialSecurityHealthTax- sickSecurityTax) + primaryHealthTax + advanceTaxPaid);
+        putNetIncome();
+    }
+
+    private void putNetIncome() {
         taxData.put("Net income", netIncome);
     }
 }
