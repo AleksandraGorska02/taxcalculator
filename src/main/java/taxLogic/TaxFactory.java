@@ -2,14 +2,10 @@ package taxLogic;
 
 public class TaxFactory {
 
-    public static TaxCalculation createTaxCalculation(char contractType, double income) {
-        switch (Character.toUpperCase(contractType)) {
-            case 'E':
-                return new EmploymentTax(income);
-            case 'C':
-                return new CivilTax(income);
-            default:
-                throw new IllegalArgumentException("Unknown type of contract: " + contractType);
-        }
+    public static TaxCalculation createTaxCalculation(ContractType contractType, double income) {
+        return switch (contractType) {
+            case EMPLOYMENT -> new EmploymentTax(income);
+            case CIVIL -> new CivilTax(income);
+        };
     }
 }

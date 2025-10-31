@@ -1,4 +1,5 @@
 
+import taxLogic.ContractType;
 import taxLogic.TaxCalculation;
 import taxLogic.TaxFactory;
 import utils.InputHandler;
@@ -7,7 +8,7 @@ import utils.Printer;
 public class TaxCalculator {
 
     public static double income = 0;
-    public static char contractType = ' ';
+    public static ContractType contractType ;
 
     public static void main(String[] args) {
 

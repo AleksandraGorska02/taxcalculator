@@ -89,3 +89,5 @@ In this step, however, I decided to change the implementation of the calculation
 I also thought about this piece of code, wondering whether it would be better to leave it as it is so as not to add new files, but in the end I decided to use the factory pattern here. This adds extra code but makes it easier to add new contract types/subtypes in the future.
 <br/>
 When extracting constants, I decided to place them in class implementations because when changes are made, it will be easier to adjust them for each contract independently.
+<br />
+ I changed the way the contract is selected. Adding the ContractType enum allowed me to remove the selection using char.
